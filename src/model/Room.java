@@ -29,7 +29,7 @@ public class Room
 
     private Edible edible;
     
-    
+    private Item item;
     /**
      * Create a room described "description". Initially, it has
      * no exits. "description" is something like "a kitchen" or
@@ -41,6 +41,7 @@ public class Room
         this.description = description;
         exits = new HashMap<String, Room>();
         edible = Edible.buildEdible();
+        item = Item.buildItem();
     }
 
     /**
@@ -94,13 +95,48 @@ public class Room
     	return 0;
     }
     
+    /**
+     * Add an item to the room (according to probability set in Item Class) 
+     */
+    public void setItem(String itemName){
+        if(item != null){
+            item.setItemName(itemName);
+        }
+
+    }
+
+    /**
+     * Determine whether this room contains an Item
+     * @return The room has an Item (true) or doesn't (false)
+     */
+    public boolean hasItem() {
+    	return item != null;
+    }
     
+    /**
+     * Pick up the Item, so it will no longer be available within the Room.
+     * If no Item exists in the room, return 0.
+     * @return The effect that the item has on the inventory
+     */
+    public int getItem() {
+    	if(hasItem()) {
+    		item = null;
+    		return 1;
+    	}
+    	return 0;
+    }
+    
+    public String getItemName(){
+        return item.getName();
+    }
     
     public String toString() {
     	String longDescription = getDescription() + "\n";
     	if(hasEdible()) {
-    		longDescription += "There is something to eat here.\n";
-    		
+    		longDescription += "There is something to eat here.\n";	
+    	}
+    	if(hasItem()) {
+    		longDescription += "The " + item.getName() + " is here.\n";	
     	}
     	longDescription += "Exits:";
        	for(String direction : exits.keySet()) {

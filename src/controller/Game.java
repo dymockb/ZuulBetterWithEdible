@@ -62,6 +62,12 @@ public class Game
         lab = new Room("in a computing lab");
         office = new Room("in the computing admin office");
         
+        // initialise room Items
+        theater.setItem("notebook");
+        pub.setItem("drink");
+        lab.setItem("laptop");
+        office.setItem("printer");
+
         // initialise room exits
         outside.setExit("east", theater);
         outside.setExit("south",  lab);
@@ -126,6 +132,7 @@ public class Game
 
         if(command.isUnknown()) {
             System.out.println("I don't know what you mean...");
+            System.out.println("Please type a two-word command.");
             return false;
         }
 
@@ -141,6 +148,9 @@ public class Game
         }
         else if (commandWord.equals("eat")) {
         	System.out.println(player.eat());
+        }
+        else if (commandWord.equals("get")) {
+        	getItem(command);
         }
         if(!player.isAlive()) {
         	System.out.println("You have died");
@@ -167,6 +177,36 @@ public class Game
         System.out.println();
         System.out.println("Your command words are:");
         System.out.println("   " + parser.getPrintableCommandWords());
+    }
+
+    /** 
+     * Try to pick up an item.  If there is an item, add it to the inventory
+     * and remove it from the room. Otherwise print an error message.
+     */
+    private boolean getItem(Command command) 
+    {
+        if(!command.hasSecondWord() && player.getCurrentLocation().hasItem()){
+            // if there is no second word, we don't know what to pick up...
+            System.out.println("Pick up what?");
+            return false;            
+        }
+
+        String item = command.getSecondWord();
+
+        if(!player.getCurrentLocation().hasItem()){
+            System.out.println("There is nothing to pick up here.");
+            return false;
+        }
+
+        if (item.equals(player.getCurrentLocation().getItemName())){
+            player.getCurrentLocation().getItem();
+            System.out.println("You have picked up the " + item + ".");
+            return true;
+        } else {
+            System.out.println("That item is not recognised.");
+            return false;
+        }
+
     }
 
     /** 
