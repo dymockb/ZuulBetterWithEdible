@@ -1,11 +1,11 @@
-//import java.util.ArrayList;
 package model;
+import java.util.ArrayList;
 
 public class Player {
 	private int score;
 	private int health;
 	private Room currentLocation;
-	//private ArrayList<Item> inventory;
+	private ArrayList<Item> inventory;
 	
 	/**
 	 * Create a Player with default score and health. Player starts
@@ -16,7 +16,7 @@ public class Player {
 		score = 0;
 		health = 10;
 		this.currentLocation = currentLocation;
-		//inventory = new ArrayList<Item>();
+		inventory = new ArrayList<Item>();
 	}
 
 	/**
@@ -103,7 +103,26 @@ public class Player {
 			return "Eat what? There's nothing here.";
 		}
 	}
-	
+
+	/**
+	 * If an item has been picked up, add it to the inventory
+	 */
+	public void addToInventory(Item item){
+		inventory.add(item);
+	}
+
+	public void printInventory(){
+		if(inventory.size() > 0){
+			System.out.print("You've picked up these items: ");
+			for(Item item: inventory){
+				System.out.print(item.getName() + " ");
+			}
+			System.out.println("");
+		} else {
+			System.out.println("You have no items.");
+		}	
+	}
+
 	/**
 	 * Get a human-readable description of the Player-object.
 	 * Here we include everything that the Room (current location)

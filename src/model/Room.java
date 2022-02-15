@@ -118,12 +118,16 @@ public class Room
      * If no Item exists in the room, return 0.
      * @return The effect that the item has on the inventory
      */
-    public int getItem() {
+    public int pickUpItem() {
     	if(hasItem()) {
     		item = null;
     		return 1;
     	}
     	return 0;
+    }
+
+    public Item getItem(){
+        return item;
     }
     
     public String getItemName(){

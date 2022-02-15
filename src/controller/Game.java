@@ -152,6 +152,10 @@ public class Game
         else if (commandWord.equals("get")) {
         	getItem(command);
         }
+        else if (commandWord.equals("inventory")) {
+        	player.printInventory();
+        }
+        
         if(!player.isAlive()) {
         	System.out.println("You have died");
         	// set the wantToQuit flag to force the game to end
@@ -199,7 +203,8 @@ public class Game
         }
 
         if (item.equals(player.getCurrentLocation().getItemName())){
-            player.getCurrentLocation().getItem();
+            player.addToInventory(player.getCurrentLocation().getItem());
+            player.getCurrentLocation().pickUpItem();
             System.out.println("You have picked up the " + item + ".");
             return true;
         } else {
