@@ -135,8 +135,8 @@ public class Room
     	if(hasEdible()) {
     		longDescription += "There is something to eat here.\n";	
     	}
-    	if(hasItem()) {
-    		longDescription += "The " + item.getName() + " is here.\n";	
+    	if(hasItem() && !getItemName().equals("blankItem")) {
+    		longDescription += "The " + getItemName() + " is here.\n";	
     	}
     	longDescription += "Exits:";
        	for(String direction : exits.keySet()) {

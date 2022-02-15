@@ -1,11 +1,11 @@
-import java.util.ArrayList;
+//import java.util.ArrayList;
 package model;
 
 public class Player {
 	private int score;
 	private int health;
 	private Room currentLocation;
-	private ArrayList<Item> inventory;
+	//private ArrayList<Item> inventory;
 	
 	/**
 	 * Create a Player with default score and health. Player starts
@@ -16,7 +16,7 @@ public class Player {
 		score = 0;
 		health = 10;
 		this.currentLocation = currentLocation;
-		inventory = new ArrayList<Item>();
+		//inventory = new ArrayList<Item>();
 	}
 
 	/**

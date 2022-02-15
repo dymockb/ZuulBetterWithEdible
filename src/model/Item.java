@@ -12,7 +12,7 @@ public class Item {
 	 * Called via buildItem() to enforce creation probability.
 	 */
 	private Item() {
-		
+		name = "blankItem";
 	}
 	
 	/**
