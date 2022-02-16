@@ -30,6 +30,14 @@ public class Item {
 	public void setItemName(String itemName){
 		name = itemName;
 	}
+
+	/*
+	@Test
+	public void testSetItemName(){
+		Item i = new Item();
+		assertEquals("newName", i.setItemName("newName"));
+	}
+	*/
 	
 	/** 
 	 * @return The item name

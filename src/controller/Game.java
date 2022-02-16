@@ -155,7 +155,7 @@ public class Game
         else if (commandWord.equals("inventory")) {
         	player.printInventory();
         }
-        
+
         if(!player.isAlive()) {
         	System.out.println("You have died");
         	// set the wantToQuit flag to force the game to end
