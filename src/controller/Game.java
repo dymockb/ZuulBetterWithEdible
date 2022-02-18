@@ -150,7 +150,8 @@ public class Game
         	System.out.println(player.eat());
         }
         else if (commandWord.equals("get")) {
-        	getItem(command);
+        	player.getItem(command);
+            //getItem(command);
         }
         else if (commandWord.equals("inventory")) {
         	player.printInventory();
@@ -181,37 +182,6 @@ public class Game
         System.out.println();
         System.out.println("Your command words are:");
         System.out.println("   " + parser.getPrintableCommandWords());
-    }
-
-    /** 
-     * Try to pick up an item.  If there is an item, add it to the inventory
-     * and remove it from the room. Otherwise print an error message.
-     */
-    private boolean getItem(Command command) 
-    {
-        if(!command.hasSecondWord() && player.getCurrentLocation().hasItem()){
-            // if there is no second word, we don't know what to pick up...
-            System.out.println("Pick up what?");
-            return false;            
-        }
-
-        String item = command.getSecondWord();
-
-        if(!player.getCurrentLocation().hasItem()){
-            System.out.println("There is nothing to pick up here.");
-            return false;
-        }
-
-        if (item.equals(player.getCurrentLocation().getItemName())){
-            player.addToInventory(player.getCurrentLocation().getItem());
-            player.getCurrentLocation().pickUpItem();
-            System.out.println("You have picked up the " + item + ".");
-            return true;
-        } else {
-            System.out.println("That item is not recognised.");
-            return false;
-        }
-
     }
 
     /** 

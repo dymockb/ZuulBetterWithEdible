@@ -18,6 +18,14 @@ public class Edible {
 			effect *= -1;
 		}
 	}
+
+	private Edible(boolean healthy) {
+		if(healthy){
+			effect = 1;
+		} else {
+			effect = -1;
+		}
+	}
 	
 	/**
 	 * Factory method to build an Edible object according to
@@ -29,6 +37,22 @@ public class Edible {
 			return new Edible();
 		}
 		return null;
+	}
+
+	/**
+	 * Factory methods to build a healthy Edible object for using in tests
+	 * @return The Edible object (will increase health by 1)
+	 */
+	public static Edible buildHealthyEdible() {
+		return new Edible(true);
+	}
+
+	/**
+	 * Factory methods to build an unhealthy Edible object for using in tests
+	 * @return The Edible object (will decrease health by 1)
+	 */
+	public static Edible buildUnhealthyEdible() {
+		return new Edible(false);
 	}
 	
 	/**

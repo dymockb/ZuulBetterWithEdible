@@ -45,6 +45,21 @@ public class Room
     }
 
     /**
+     * Create a room described "description". Initially, it has
+     * no exits. "description" is something like "a kitchen" or
+     * "an open court yard".
+     * @param description The room's description.
+     */
+    public Room(String description, Boolean testing) 
+    {
+        this.description = description;
+        exits = new HashMap<String, Room>();
+        if(testing){
+            item = Item.buildTestItem();
+        }
+    }
+
+    /**
      * Define an exit of this room.
      * to another room or is null (no exit there).
      * @param direction Which way to move
@@ -73,6 +88,17 @@ public class Room
     	return exits.get(direction);
     }
     
+    /**
+     * set an edible in the room for running tests (healthy status can be fixed)
+     */
+    public void setTestEdible(boolean healthy) {
+    	if(healthy){
+            edible = Edible.buildHealthyEdible();
+        } else {
+            edible = Edible.buildUnhealthyEdible();
+        }
+    }
+
     /**
      * Determine whether this room contains an edible item
      * @return The room has an edible item (true) or doesn't (false)

@@ -104,11 +104,46 @@ public class Player {
 		}
 	}
 
+	/** 
+     * Try to pick up an item.  If there is an item, add it to the inventory
+     * and remove it from the room. Otherwise print an error message.
+     */
+    public boolean getItem(Command command) 
+    {
+        if(!command.hasSecondWord() && getCurrentLocation().hasItem()){
+            // if there is no second word, we don't know what to pick up...
+            System.out.println("Pick up what?");
+            return false;            
+        }
+
+        String item = command.getSecondWord();
+
+        if(!getCurrentLocation().hasItem()){
+            System.out.println("There is nothing to pick up here.");
+            return false;
+        }
+
+        if (item.equals(getCurrentLocation().getItemName())){
+            addToInventory(getCurrentLocation().getItem());
+            getCurrentLocation().pickUpItem();
+            System.out.println("You have picked up the " + item + ".");
+            return true;
+        } else {
+            System.out.println("That item is not recognised.");
+            return false;
+        }
+
+    }
+
 	/**
 	 * If an item has been picked up, add it to the inventory
 	 */
 	public void addToInventory(Item item){
 		inventory.add(item);
+	}
+
+	public ArrayList<Item> getInventory(){
+		return inventory;
 	}
 
 	public void printInventory(){

@@ -27,17 +27,17 @@ public class Item {
 		return null;
 	}
 
+	/**
+	 * Factory method to build an Item object for use in tests.
+	 * @return The Item object
+	 */
+	public static Item buildTestItem() {
+		return new Item();
+	}
+
 	public void setItemName(String itemName){
 		name = itemName;
 	}
-
-	/*
-	@Test
-	public void testSetItemName(){
-		Item i = new Item();
-		assertEquals("newName", i.setItemName("newName"));
-	}
-	*/
 	
 	/** 
 	 * @return The item name
